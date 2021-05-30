@@ -1,5 +1,11 @@
-﻿
-Public Class Form1
+﻿Public Class Form1
+
+    Dim table As New DataTable("Table")
+
+    'Dim annee As Integer = SelectionRapport.AnneeRapport.Value
+    'Dim mois As String = SelectionRapport.listeMois.Text
+    'Dim moisPlusUn As String = SelectionRapport.listeMois.Text
+    Dim idvisiteur As Integer = connexion.idvisiteur
 
     Dim myConnection As New Odbc.OdbcConnection
     Dim myCommand As New Odbc.OdbcCommand
@@ -9,55 +15,54 @@ Public Class Form1
     Dim connString As String
     Dim donnee As DataTable
 
-    Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
-        'FERME DE SERVEUR
-        'connString = "Driver={Microsoft ODBC for Oracle};CONNECTSTRING=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=10.0.23.80)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=ORCL)));Uid=MESGUEN3;Pwd=Estran;"
-        'SERVEUR DE TEST
-        'connString = "Driver={Microsoft ODBC for Oracle};CONNECTSTRING=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=10.0.220.100)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=ORA20)));Uid=SCOTT;Pwd=tiger;"
-        connString = "DSN=ora19;Uid=ppe;Pwd=estran;"
-        'connString = "DSN=FERME;Uid=system;Pwd=estran;"
+    'Dim conn As SqlConnection
+    'Dim cmd As SqlCommand
+    'Dim da As SqlDataAdapter
+    'Dim ds As DataSet
+    'Dim itemcoll(100) As String
 
-        myConnection.ConnectionString = connString
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        Try
-            myConnection.Open()
-            MessageBox.Show("Connexion Oracle Réussie")
-        Catch ex As Odbc.OdbcException
-            MessageBox.Show(ex.Message)
-        End Try
+        'If moisPlusUn < 10 Then
+        '    moisPlusUn = "0" & moisPlusUn.ToString
+        'End If
+        'If mois = "09" Then
+        '    moisPlusUn = "10"
+        'End If
+        'If mois = "12" Then
+        '    mois = "01"
+        '    annee = annee + 1
+        'End If
 
-        'Dim query As String = "SELECT table_name FROM user_tables"
-        'myCommand.Connection = myConnection
-        'myCommand.CommandText = query
-        'myReader = myCommand.ExecuteReader
-
-        Dim query As String = "SELECT table_name FROM user_tables"
-        myCommand.Connection = myConnection
-        myCommand.CommandText = query
-        myReader = myCommand.ExecuteReader
-
-        While myReader.Read
-            NomBox.Items.Add(myReader.GetString(0))
-        End While
-
-    End Sub
+        Dim query As String = "select distinct Praticien.nom, praticien.prenom, rapport.date_visite, rapport.rapport_visite from praticien, medicament, quantite, rapport where medicament.idmedicament = quantite.id_medicament AND praticien.idpraticien = rapport.id_praticien AND rapport.idrapport = quantite.id_rapport AND rapport.id_praticien = '" & idvisiteur & "';"
+        Dim Element As New ListViewItem
 
 
-    Private Sub NomBox_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NomBox.SelectedIndexChanged
 
-        Dim table_name As String = NomBox.SelectedItem.ToString()
-        Dim query As String = "SELECT * FROM " & table_name
         donnee = New DataTable
-        myAdapter = New Odbc.OdbcDataAdapter(query, myConnection)
+        myAdapter = New Odbc.OdbcDataAdapter(query, connexion.myConnection)
         myBuilder = New Odbc.OdbcCommandBuilder(myAdapter)
         myAdapter.Fill(donnee)
-        SocGrid.DataSource = donnee
+
+
+        ' now set the datagridview datasource equals to your datatable name
+        DataGridView1.DataSource = donnee
 
     End Sub
 
 
-    Private Sub SocGrid_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles SocGrid.CellContentClick
 
-    End Sub
+    'Private Sub DataGridView1_Click(sender As Object, e As EventArgs) Handles DataGridView1.Click
+
+    '    Dim form As New Form2
+
+    '    form.TextBox1.Text = DataGridView1.CurrentRow.Cells(0).Value.ToString()
+    '    form.TextBox2.Text = DataGridView1.CurrentRow.Cells(1).Value.ToString()
+    '    form.TextBox3.Text = DataGridView1.CurrentRow.Cells(2).Value.ToString()
+    '    form.TextBox4.Text = DataGridView1.CurrentRow.Cells(3).Value.ToString()
+
+    '    form.ShowDialog()
+    'End Sub
+
 End Class

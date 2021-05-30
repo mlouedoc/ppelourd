@@ -14,8 +14,9 @@
         'connString = "Driver={Microsoft ODBC for Oracle};CONNECTSTRING=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=10.0.23.80)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=ORCL)));Uid=MESGUEN3;Pwd=Estran;"
         'SERVEUR DE TEST
         'connString = "Driver={Microsoft ODBC for Oracle};CONNECTSTRING=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=10.0.220.100)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=ORA20)));Uid=SCOTT;Pwd=tiger;"
-        connString = "DSN=ora19;Uid=ppe;Pwd=estran;"
-        'connString = "DSN=FERME;Uid=SCOTT;Pwd=tiger;"
+
+        'connString = "DSN=ora19;Uid=slam19;Pwd=estran;"
+        connString = "DSN=connexionORA09;Uid=ppe;Pwd=estran;"
 
         myConnection.ConnectionString = connString
 

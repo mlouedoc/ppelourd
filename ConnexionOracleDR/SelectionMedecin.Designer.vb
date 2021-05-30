@@ -25,11 +25,12 @@ Partial Class SelectionMedecin
         Me.validerPraticien = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.listepraticien = New System.Windows.Forms.ComboBox()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'validerPraticien
         '
-        Me.validerPraticien.Location = New System.Drawing.Point(128, 189)
+        Me.validerPraticien.Location = New System.Drawing.Point(60, 189)
         Me.validerPraticien.Margin = New System.Windows.Forms.Padding(2)
         Me.validerPraticien.Name = "validerPraticien"
         Me.validerPraticien.Size = New System.Drawing.Size(103, 37)
@@ -57,11 +58,22 @@ Partial Class SelectionMedecin
         Me.listepraticien.Size = New System.Drawing.Size(180, 21)
         Me.listepraticien.TabIndex = 5
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(202, 189)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(103, 37)
+        Me.Button1.TabIndex = 6
+        Me.Button1.Text = "Retour"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'SelectionMedecin
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.Color.CornflowerBlue
         Me.ClientSize = New System.Drawing.Size(353, 263)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.listepraticien)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.validerPraticien)
@@ -75,4 +87,5 @@ Partial Class SelectionMedecin
     Friend WithEvents validerPraticien As System.Windows.Forms.Button
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents listepraticien As System.Windows.Forms.ComboBox
+    Friend WithEvents Button1 As System.Windows.Forms.Button
 End Class

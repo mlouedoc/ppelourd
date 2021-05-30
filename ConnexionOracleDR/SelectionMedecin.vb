@@ -42,7 +42,7 @@
         Dim idchoixPraticien As String = listepraticien.SelectedValue
         idPraticien = idchoixPraticien
 
-        Form4.Show()
+        AjoutRapport.Show()
         Me.Hide()
 
     End Sub
@@ -59,4 +59,8 @@
 
     End Sub
 
+    Private Sub Button1_Click(sender As System.Object, e As System.EventArgs) Handles Button1.Click
+        accueil.Show()
+        Me.Hide()
+    End Sub
 End Class
